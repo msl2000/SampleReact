@@ -6,6 +6,7 @@ function App() {
   const [counter, setCounter] = useState(0)
   const [active_tab, setActiveTab] = useState('dashboard')
 
+  // These are your tabs
   const tabs = [
     {
       label: 'Dashboard',
@@ -53,6 +54,7 @@ function App() {
         </div>
         <div class="py-10 flex flex-col gap-3 ml-6">
           {
+            // This just loops through your tabs variable
             tabs.map((tab, index) => {
               return (
                 <div class={"p-3 " + (tab.slug == active_tab ? "bg-white" : "")}>
