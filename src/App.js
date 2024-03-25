@@ -4,6 +4,31 @@ import { useState } from 'react';
 
 function App() {
   const [counter, setCounter] = useState(0)
+  const [active_tab, setActiveTab] = useState('dashboard')
+
+  const tabs = [
+    {
+      label: 'Dashboard',
+      slug: 'dashboard',
+    },
+    {
+      label: 'Inventory',
+      slug: 'inventory',
+    },
+    {
+      label: 'Clients',
+      slug: 'clients',
+    },
+    {
+      label: 'Users',
+      slug: 'users',
+    },
+    {
+      label: 'Settings',
+      slug: 'settings',
+    },
+
+  ]
 
   function clickedToIncreaseNumber() {
     setCounter(counter + 1);
@@ -12,7 +37,7 @@ function App() {
 
   return (
     <div className="h-screen w-screen bg-white flex flex-row">
-     <div class="h-full bg-orange-500 w-64 px-3 py-5">
+      <div class="h-full bg-orange-500 w-64 px-3 py-5">
         <div class="flex flex-row gap-5 items-center justify-center">
           <div class="h-12 w-12 rounded-full bg-red-500">
 
@@ -27,24 +52,17 @@ function App() {
           </div>
         </div>
         <div class="py-10 flex flex-col gap-3 ml-6">
-          <div class="bg-white p-3">
-            <span class="text-blue-500 text-sm font-semibold">Dashboard</span>
-          </div>
-          <div class="p-3">
-            <span class="text-sm font-semibold">Inventeory,....</span>
-          </div>
-          <div class="p-3">
-            <span class="text-sm font-semibold">Inventeory,....</span>
-          </div>
-          <div class="p-3">
-            <span class="text-sm font-semibold">Inventeory,....</span>
-          </div>
-          <div class="p-3">
-            <span class="text-sm font-semibold">Inventeory,....</span>
-          </div>
-          
+          {
+            tabs.map((tab, index) => {
+              return (
+                <div class={"p-3 " + (tab.slug == active_tab ? "bg-white" : "")}>
+                  <span class={"text-sm " + (tab.slug == active_tab ? "font-semibold text-blue-500" : "")}>{tab.label}</span>
+                </div>
+              )
+            })
+          }
         </div>
-     </div>
+      </div>
     </div>
   );
 }
